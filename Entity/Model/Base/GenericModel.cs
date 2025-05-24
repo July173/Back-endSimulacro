@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entity.Model.Base
 {
-    internal class GenericModel
+    public class GenericModel : BaseModel
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
+
     }
 }

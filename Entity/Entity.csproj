@@ -8,7 +8,16 @@
 
   <ItemGroup>
     <Folder Include="DDL\" />
-    <Folder Include="Model\Base\" />
+    <Folder Include="Dtos\FormDto\" />
+    <Folder Include="Dtos\ModuleDto\" />
+    <Folder Include="Dtos\FormModuleDto\" />
+    <Folder Include="Dtos\ChangeLogDto\" />
+    <Folder Include="Dtos\ClientDto\" />
+    <Folder Include="Dtos\EmployeeDto\" />
+    <Folder Include="Dtos\ProviderDto\" />
+    <Folder Include="Dtos\RolFormPermissionDto\" />
+    <Folder Include="Dtos\PermissionDto\" />
+    <Folder Include="Dtos\PersonDto\" />
   </ItemGroup>
 
   <ItemGroup>
