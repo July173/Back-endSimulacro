@@ -30,6 +30,5 @@ namespace Utilities.Interfaces.Security
         /// <summary>
         /// Valida si el tipo de permiso es válido.
         /// </summary>
-        bool IsValidPermissionType(PermissionType type);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Entity.Dtos.Security.UserDTO;
+using Entity.Dtos.UserDTO;
 using Utilities.Interfaces.Security;
 
 namespace Utilities.Helpers.Security

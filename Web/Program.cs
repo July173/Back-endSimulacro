@@ -26,6 +26,8 @@ using Utilities.Interfaces.Security;
 using Utilities.Helpers.Security;
 using Utilities.Interfaces.OthersDates;
 using Utilities.Helpers.OthersDates;
+using Business.Implements.Security;
+using Business.Implements.OthersDates;
 
 
 
@@ -108,7 +110,7 @@ builder.Services.AddScoped<ICountryData, CountryData>();
 builder.Services.AddScoped<ICountryBusiness, CountryBusiness>();
 
 builder.Services.AddScoped<IDepartmentData, DepartmentData>();
-builder.Services.AddScoped<IDepartmentBusiness, DepartmentBusiness>();
+builder.Services.AddScoped<IDepartmentBusiness, DeparmentBusiness>();
 
 builder.Services.AddScoped<INeighborhoodData, NeighborhoodData>();
 builder.Services.AddScoped<INeighborhoodBusiness, NeighborhoodBusiness>();

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Entity.Dtos.Security.AuthDTO;
-using Entity.Model.Security;
+using Entity.Dtos.AuthDTO;
+using Entity.Model;
 
 namespace Utilities.Interfaces
 {

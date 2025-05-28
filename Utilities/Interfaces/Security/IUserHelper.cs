@@ -1,5 +1,4 @@
 ﻿using System;
-using Entity.Dtos.Security.UserDTO;
 
 namespace Utilities.Interfaces.Security
 {

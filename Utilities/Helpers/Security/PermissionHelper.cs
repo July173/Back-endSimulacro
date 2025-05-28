@@ -37,10 +37,6 @@ namespace Utilities.Helpers.Security
             return description?.Trim() ?? string.Empty;
         }
 
-        public bool IsValidPermissionType(PermissionType type)
-        {
-            // Valida que el tipo esté dentro del rango definido en el enum
-            return System.Enum.IsDefined(typeof(PermissionType), type);
-        }
+       
     }
 }
