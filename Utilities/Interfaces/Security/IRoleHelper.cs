@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Utilities.Interfaces
+﻿namespace Utilities.Interfaces.Security
 {
     /// <summary>
     /// Interfaz para operaciones relacionadas con roles y permisos

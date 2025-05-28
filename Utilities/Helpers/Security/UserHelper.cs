@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Utilities.Interfaces;
-using Entity.Dtos.UserDTO;
+using Entity.Dtos.Security.UserDTO;
+using Utilities.Interfaces.Security;
 
-namespace Utilities.Helpers
+namespace Utilities.Helpers.Security
 {
     /// <summary>
     /// Implementación de la interfaz IUserHelper que proporciona funcionalidades

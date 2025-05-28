@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Utilities.Interfaces;
+using Utilities.Interfaces.Security;
 
-namespace Utilities.Helpers
+namespace Utilities.Helpers.Security
 {
     /// <summary>
     /// Implementación de la interfaz IRoleHelper que proporciona funcionalidades

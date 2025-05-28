@@ -1,7 +1,7 @@
 ﻿using System;
-using Entity.Dtos.UserDTO;
+using Entity.Dtos.Security.UserDTO;
 
-namespace Utilities.Interfaces
+namespace Utilities.Interfaces.Security
 {
     /// <summary>
     /// Interfaz para operaciones relacionadas con usuarios

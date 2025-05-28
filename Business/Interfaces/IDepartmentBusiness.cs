@@ -10,7 +10,7 @@ using Entity.Model;
 
 namespace Business.Interfaces
 {
-    public interface IDepartmenteBusiness : IBaseBusiness<Department, DepartmentDto>
+    public interface IDepartmentBusiness : IBaseBusiness<Department, DepartmentDto>
     {
         Task<bool> UpdatePartialAsync(DepartmentUpdateDto dto);
         Task<bool> ActiveAsync(GenericDto dto);

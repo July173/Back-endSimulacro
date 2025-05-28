@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Implements
+namespace Utilities.Helpers.Security
 {
-    internal class DepartmentBusiness
+    internal class ChangeLogHelper
     {
     }
 }

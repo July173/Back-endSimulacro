@@ -68,7 +68,7 @@ namespace Web.Controllers.Implements
 
         //Este metodo responde a patch /users//{id}/status
         [HttpPatch("users/{id}/status")]
-        public async Task<IActionResult> SetUserActive(int id, [FromBody] GenericDto dto)
+        public async Task<IActionResult> SetUserActive( [FromBody] GenericDto dto)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Web.Controllers.Implements
                 // Ahora pasamos el id recibido como parámetro
                 var deleteLogicalUserDto = new GenericDto
                 {
-                    Id = id,
+                    Id = dto.Id,
                     Active = dto.Active
                 };
 

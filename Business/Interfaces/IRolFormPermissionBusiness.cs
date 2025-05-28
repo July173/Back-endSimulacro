@@ -10,6 +10,6 @@ namespace Business.Interfaces
 {
     public interface IRolFormPermissionBusiness : IBaseBusiness<RolFormPermission,RolFormPermissionDto >
     {
-        Task<bool> UpdatePartialAsync(RolFormPermission dto);
+        Task<bool> UpdatePartialAsync(RolFormPermissionDto dto);
     }
 }

@@ -8,6 +8,6 @@ namespace Web.Controllers.Interface
     public interface IRoleController : IGenericController<RolDto, Rol>
     {
         Task<IActionResult> UpdatePartialRole(UpdateRolDto dto);
-        Task<IActionResult> DeleteLogicRole(GenericDto dto);
+        Task<IActionResult> DeleteLogicRole(int id);
     }
 }

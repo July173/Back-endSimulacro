@@ -22,11 +22,10 @@ using Data.Implements.BaseDate;
 using Data.Implements.BaseData;
 using Data.Implements.Security;
 using Data.Implements.Others;
-
-
-
-
-
+using Utilities.Interfaces.Security;
+using Utilities.Helpers.Security;
+using Utilities.Interfaces.OthersDates;
+using Utilities.Helpers.OthersDates;
 
 
 
@@ -80,31 +79,46 @@ builder.Services.AddScoped<IRolUserData, RolUserData>();
 builder.Services.AddScoped<IRoleUserBusiness, RoleUserBusiness>();
 
 builder.Services.AddScoped<IPersonData, PersonData>();
+builder.Services.AddScoped<IPersonBusiness, PersonBusiness>();
 
 builder.Services.AddScoped<IFormData, FormData>();
+builder.Services.AddScoped<IFormBusiness, FormBusiness>();
 
 builder.Services.AddScoped<IModuleData, ModuleData>();
+builder.Services.AddScoped<IModuleBusiness, ModuleBusiness>();
 
 builder.Services.AddScoped<IFormModuleData, FormModuleData>();
+builder.Services.AddScoped<IFormModuleBusiness, FormModuleBusiness>();
 
 builder.Services.AddScoped<IPermissionData, PermissionData>();
+builder.Services.AddScoped<IPermissionBusiness, PermissionBusiness>();
 
 builder.Services.AddScoped<IRolFormPermissionData, RolFormPermissionData>();
+builder.Services.AddScoped<IRolFormPermissionBusiness, RolFormPermissionBusiness>();
 
 
 builder.Services.AddScoped<IProviderData, ProviderData>();
+builder.Services.AddScoped<IProviderBusiness, ProviderBusiness>();
 
 builder.Services.AddScoped<ICityData, CityData>();
+builder.Services.AddScoped<ICityBusiness, CityBusiness>();
+
 
 builder.Services.AddScoped<ICountryData, CountryData>();
+builder.Services.AddScoped<ICountryBusiness, CountryBusiness>();
 
 builder.Services.AddScoped<IDepartmentData, DepartmentData>();
+builder.Services.AddScoped<IDepartmentBusiness, DepartmentBusiness>();
 
 builder.Services.AddScoped<INeighborhoodData, NeighborhoodData>();
+builder.Services.AddScoped<INeighborhoodBusiness, NeighborhoodBusiness>();
+
 
 builder.Services.AddScoped<IClientData, ClientData>();
+builder.Services.AddScoped<IClientBusiness, ClientBusiness>();
 
 builder.Services.AddScoped<IEmployeeData, EmployeeData>();
+builder.Services.AddScoped<IEmployeeBusiness, EmployeeBusiness>();
 
 
 
@@ -117,6 +131,19 @@ builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 builder.Services.AddScoped<IAuthHeaderHelper, AuthHeaderHelper>();
 builder.Services.AddScoped<IRoleHelper, RoleHelper>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
+builder.Services.AddScoped<IPersonHelper, PersonHelper>();
+builder.Services.AddScoped<IFormHelper, FormHelper>();
+builder.Services.AddScoped<IModuleHelper, ModuleHelper>();
+builder.Services.AddScoped<IPermissionHelper, PermissionHelper>();
+builder.Services.AddScoped<ICountryHelper, CountryHelper>();
+builder.Services.AddScoped<IDepartmentHelper, DepartmentHelper>();
+builder.Services.AddScoped<ICityHelper, CityHelper>();
+builder.Services.AddScoped<INeighborhoodHelper, NeighborhoodHelper>();
+builder.Services.AddScoped<IProviderHelper, ProviderHelper>();
+builder.Services.AddScoped<IClientHelper, ClientHelper>();
+builder.Services.AddScoped<IEmployeeHelper, EmployeeHelper>();
+
+
 builder.Services.AddScoped<IValidationHelper, ValidationHelper>();
 
 // Configure JWT Authentication

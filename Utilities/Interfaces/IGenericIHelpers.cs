@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Utilities.Interfaces;
+using Utilities.Interfaces.OthersDates;
+using Utilities.Interfaces.Security;
 
 namespace Utilities.Interfaces
 {
@@ -11,7 +12,7 @@ namespace Utilities.Interfaces
     /// Interfaz unificada que agrupa utilidades generales para validación, manejo de usuarios, roles, fechas, contraseñas y encabezados de autenticación.
     /// Hereda de <see cref="IPasswordHelper"/>, <see cref="IAuthHeaderHelper"/>, <see cref="IDatetimeHelper"/>, <see cref="IRoleHelper"/>, <see cref="IUserHelper"/> y <see cref="IValidationHelper"/>.
     /// </summary>
-    public interface IGenericIHelpers : IPasswordHelper, IAuthHeaderHelper, IDatetimeHelper, IRoleHelper, IUserHelper, IValidationHelper
+    public interface IGenericIHelpers : IPasswordHelper, IAuthHeaderHelper, IDatetimeHelper, IRoleHelper, IUserHelper, IValidationHelper, IChangeLogHelper, ICityHelper, IClientHelper, ICountryHelper, IPersonHelper, INeighborhoodHelper, IFormHelper, IModuleHelper, IPermissionHelper, IDepartmentHelper, IProviderHelper, IEmployeeHelper
     {
     }
 

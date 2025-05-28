@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using FluentValidation.Results;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Utilities.Interfaces.Security;
+using Utilities.Interfaces.OthersDates;
 
 namespace Utilities.Helpers
 {
@@ -14,6 +16,18 @@ namespace Utilities.Helpers
         private readonly IRoleHelper _roleHelper;
         private readonly IUserHelper _userHelper;
         private readonly IValidationHelper _validationHelper;
+        private readonly IChangeLogHelper _changeLogHelper;
+        private readonly ICityHelper _cityHelper;
+        private readonly IClientHelper _clientHelper;
+        private readonly ICountryHelper _countryHelper;
+        private readonly IPersonHelper _personHelper;
+        private readonly INeighborhoodHelper _neighborhoodHelper;
+        private readonly IFormHelper _formHelper;
+        private readonly IModuleHelper _moduleHelper;
+        private readonly IPermissionHelper _permissionHelper;
+        private readonly IDepartmentHelper _departmentHelper;
+        private readonly IProviderHelper _providerHelper;
+        private readonly IEmployeeHelper _employeeHelper;
 
         public GenericHelpers(
             IDatetimeHelper datetimeHelper,
@@ -21,7 +35,19 @@ namespace Utilities.Helpers
             IAuthHeaderHelper authHeaderHelper,
             IRoleHelper roleHelper,
             IUserHelper userHelper,
-            IValidationHelper validationHelper)
+            IValidationHelper validationHelper,
+            IChangeLogHelper changeLogHelper,
+            ICityHelper cityHelper,
+            IClientHelper clientHelper,
+            ICountryHelper countryHelper,
+            IPersonHelper personHelper,
+            INeighborhoodHelper neighborhoodHelper,
+            IFormHelper formHelper,
+            IModuleHelper moduleHelper,
+            IPermissionHelper permissionHelper,
+            IDepartmentHelper departmentHelper,
+            IProviderHelper providerHelper,
+            IEmployeeHelper employeeHelper)
         {
             _datetimeHelper = datetimeHelper;
             _passwordHelper = passwordHelper;
@@ -29,7 +55,20 @@ namespace Utilities.Helpers
             _roleHelper = roleHelper;
             _userHelper = userHelper;
             _validationHelper = validationHelper;
+            _changeLogHelper = changeLogHelper;
+            _cityHelper = cityHelper;
+            _clientHelper = clientHelper;
+            _countryHelper = countryHelper;
+            _personHelper = personHelper;
+            _neighborhoodHelper = neighborhoodHelper;
+            _formHelper = formHelper;
+            _moduleHelper = moduleHelper;
+            _permissionHelper = permissionHelper;
+            _departmentHelper = departmentHelper;
+            _providerHelper = providerHelper;
+            _employeeHelper = employeeHelper;
         }
+
 
         public DateTime GetCurrentUtcDateTime() => _datetimeHelper.GetCurrentUtcDateTime();
         public DateTime ConvertToLocalTime(DateTime utcDateTime, string timeZoneId) => _datetimeHelper.ConvertToLocalTime(utcDateTime, timeZoneId);

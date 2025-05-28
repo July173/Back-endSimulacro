@@ -9,7 +9,7 @@ using Entity.Model;
 
 namespace Business.Interfaces
 {
-    internal interface IProviderBusiness : IBaseBusiness<Provider, ProviderDto>
+    public interface IProviderBusiness : IBaseBusiness<Provider, ProviderDto>
     {
         Task<bool> UpdatePartialAsync(ProvideUpdateDto dto);
         Task<bool> ActiveAsync(GenericDto dto);
