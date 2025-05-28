@@ -155,10 +155,7 @@ namespace Entity.Context
                     .Property("DeleteAt")
                     .IsRequired(false);
                     
-                // Configurar Status con un valor predeterminado de true
-                modelBuilder.Entity(entityType.ClrType)
-                    .Property("Active")
-                    .HasDefaultValue(true);
+                
             }
 
             // Configuración para entidades que heredan de GenericModel

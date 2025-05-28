@@ -5,14 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Entity.Dtos.Base;
 using Entity.Dtos.ProviderDto;
-using Entity.DTOs.Person;
 using Entity.Model;
 
 namespace Business.Interfaces
 {
-    public interface IPersonBusiness : IBaseBusiness<Person, PersonDto>
+    internal interface IProviderBusiness : IBaseBusiness<Provider, ProviderDto>
     {
-        Task<bool> UpdatePartialAsync(PersonUpdateDto dto);
+        Task<bool> UpdatePartialAsync(ProvideUpdateDto dto);
         Task<bool> ActiveAsync(GenericDto dto);
     }
 }
