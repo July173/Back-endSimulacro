@@ -7,10 +7,9 @@ using Entity.Model.Base;
 
 namespace Entity.Model
 {
-    public class Rol : BaseModel
+    public class Rol : GenericModel
     {
-        public  string Name { get; set; }
-        public  string Description { get; set; }
+     
         public  IEnumerable<RolUser> RolUsers { get; set; } 
     }
 }

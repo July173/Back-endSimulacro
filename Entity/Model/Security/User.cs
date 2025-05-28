@@ -11,6 +11,7 @@ namespace Entity.Model
     {
         public  string Email { get; set; }
         public  string Password { get; set; }
+        public bool Active { get; set; }
         public  IEnumerable<RolUser> RolUsers { get; set; }
         public Neighborhood Neighborhood { get; set; }
         public int NeighborhoodId { get; set; }

@@ -9,7 +9,6 @@ namespace Entity.Model
 {
     public class Client : GenericModel
     {
-        
         public string PaymentTerms { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }

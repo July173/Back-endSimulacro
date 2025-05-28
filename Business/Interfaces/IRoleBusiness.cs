@@ -1,4 +1,5 @@
 using Business.Interfaces;
+using Entity.Dtos.Base;
 using Entity.Dtos.RolDTO;
 using Entity.Model;
 
@@ -23,6 +24,6 @@ namespace Business.Interfaces
         /// </summary>
         /// <param name="id">ID del rol a desactivar.</param>
         ///<returns>True si el borrado lógico fue exitoso; de lo contario false</returns>
-        Task<bool> DeleteLogicRolAsync(DeleteLogiRolDto dto);
+        Task<bool> DeleteLogicRolAsync(GenericDto dto);
     }
 }

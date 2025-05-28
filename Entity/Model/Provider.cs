@@ -10,7 +10,6 @@ namespace Entity.Model
     public  class Provider : GenericModel
 
     {
-    
         public User User { get; set; }
         public int UserId { get; set; }
         public string TaxId { get; set; } // NIT O RUT

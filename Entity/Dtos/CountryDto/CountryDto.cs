@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity.Dtos.Base;
+using Entity.Model;
 
-namespace Entity.DTOs.Module
+namespace Entity.Dtos.CountryDto
 {
-    public class ModuleStatusDto
+    public class CountryDto :UpdateDtoBase
     {
-        public int Id { get; set; }
         public bool Active { get; set; }
-        
+        public string CountryCode { get; set; }
+
     }
 }

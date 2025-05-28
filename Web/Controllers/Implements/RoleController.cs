@@ -3,6 +3,7 @@ using Entity.Dtos.RolDTO;
 using Entity.Model;
 using Web.Controllers.Interface;
 using Business.Interfaces;
+using Entity.Dtos.Base;
 
 namespace Web.Controllers.Implements
 {
@@ -50,7 +51,7 @@ namespace Web.Controllers.Implements
         {
             try
             {
-                var dto = new DeleteLogiRolDto { Id = id, Status = false }; // Se inicializa la propiedad requerida 'Status'
+                var dto = new GenericDto { Id = id, Active = false }; // Se inicializa la propiedad requerida 'Status'
                 var result = await _rolBusiness.DeleteLogicRolAsync(dto);
                 if (!result)
                     return NotFound($"Rol con ID {id} no encontrado");

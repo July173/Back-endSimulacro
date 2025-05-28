@@ -13,5 +13,7 @@ namespace Entity.Model
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
         public ICollection<Neighborhood> Neighborhoods { get; set; }
+        public ICollection<Department> Departments { get; set; }
+
     }
 }

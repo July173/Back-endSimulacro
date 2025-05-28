@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity.Dtos.Base;
 
 namespace Entity.DTOs.Person
 {
-    public class PersonUpdateDto
+    public class PersonUpdateDto : BaseDto
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string FirstLastName { get; set; }
-        public string SecondLastName { get; set; }
+        public string LastName { get; set; }
         public long PhoneNumber { get; set; }
-        public long NumberIdentification { get; set; }
+        public long TypeIdentification { get; set; }
     }
 }
 

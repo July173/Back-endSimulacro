@@ -1,4 +1,5 @@
 using Business.Interfaces;
+using Entity.Dtos.Base;
 using Entity.Dtos.UserDTO;
 using Entity.Model;
 
@@ -32,7 +33,7 @@ namespace Business.Interfaces
         /// </summary>
         /// <param name="dto">Objeto que contiene los datos parciales a actualizar del usuario.</param>
         ///<returns>True si la actualización fue exitosa; de lo contario false</returns>
-        Task<bool> UpdateParcialUserAsync(UpdateUserDto dto);
+        Task<bool> UpdateParcialUserAsync(UserUpdateDto dto);
 
         /// <summary>
         /// Cambia el estado activo/inactivo de un usuario.
@@ -40,7 +41,7 @@ namespace Business.Interfaces
         /// <param name="dto">Objeto que contiene el ID del usuario y el nuevo estado activo.</param>
         ///<returns>True si el cambio de estado fue exitoso; de lo contario false</returns>
 
-        Task<bool> SetUserActiveAsync(DeleteLogicalUserDto dto);
+        Task<bool> SetUserActiveAsync(GenericDto dto);
 
 
         ///<summary>

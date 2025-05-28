@@ -44,9 +44,9 @@ namespace Data.Implements.UserDate
 
         public async Task<bool> Active(int id,bool status)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Status == status);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Active == status);
             if (user == null) return false;
-            user.Status = !status;
+            user.Active = !status;
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
             return true;
@@ -75,8 +75,6 @@ namespace Data.Implements.UserDate
             {
                 UserId = userId,
                 RolId = rolId,
-                Status = true,
-                CreatedAt = DateTime.UtcNow,
                 User = user,
                 Rol = rol
             };

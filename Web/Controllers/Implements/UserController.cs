@@ -3,6 +3,7 @@ using Entity.Dtos.UserDTO;
 using Entity.Model;
 using Web.Controllers.Interface;
 using Business.Interfaces;
+using Entity.Dtos.Base;
 
 namespace Web.Controllers.Implements
 {
@@ -41,7 +42,7 @@ namespace Web.Controllers.Implements
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UpdatePartialUser([FromBody] UpdateUserDto dto)
+        public async Task<IActionResult> UpdatePartialUser([FromBody] UserUpdateDto dto)
         {
             try
             {
@@ -67,17 +68,17 @@ namespace Web.Controllers.Implements
 
         //Este metodo responde a patch /users//{id}/status
         [HttpPatch("users/{id}/status")]
-        public async Task<IActionResult> SetUserActive(int id, [FromBody] UserStatusDto dto)
+        public async Task<IActionResult> SetUserActive(int id, [FromBody] GenericDto dto)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 // Ahora pasamos el id recibido como parámetro
-                var deleteLogicalUserDto = new DeleteLogicalUserDto
+                var deleteLogicalUserDto = new GenericDto
                 {
                     Id = id,
-                    Status = dto.IsActive
+                    Active = dto.Active
                 };
 
                 var result = await _userBusiness.SetUserActiveAsync(deleteLogicalUserDto);

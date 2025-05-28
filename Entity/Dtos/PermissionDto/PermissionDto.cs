@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity.Dtos.Base;
 
 namespace Entity.DTOs
 {
-    public class PermissionDto
+    public class PermissionDto :UpdateDtoBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string DisplayName { get; set; }
+        public bool Active { get; set; }
     }
 }

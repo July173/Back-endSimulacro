@@ -8,6 +8,6 @@ namespace Web.Controllers.Interface
 {
     public interface IRoleUserController : IGenericController<RolUserDto, RolUser>
     {
-        Task<IActionResult> UpdatePartialRoleUser(int id,int roluser,UpdateRolUserDto dto);
+        Task<IActionResult> UpdatePartialRoleUser(int id,int roluser,RolUserDto dto);
     }
 }

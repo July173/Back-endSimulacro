@@ -7,7 +7,7 @@ using Entity.Model.Base;
 
 namespace Entity.Model
 {
-    public class RolFormPermission : GenericModel
+    public class RolFormPermission : BaseModel
     {
         public int PermissionId { get; set; }
         public Permission Permission { get; set; }

@@ -18,21 +18,22 @@ namespace Data.Implements.RolData
 
         public async Task<bool> ActiveAsync(int id, bool active)
         {
-            var user = await _context.Set<Rol>().FindAsync(id);
-            if (user == null)
+            var rol = await _context.Set<Rol>().FindAsync(id);
+            if (rol == null)
                 return false;
 
-            user.Status = active;
-            _context.Entry(user).Property(u => u.Status).IsModified = true;
+            rol.Active = active;
+            _context.Entry(rol).Property(r => r.Active).IsModified = true;
 
             await _context.SaveChangesAsync();
             return true;
         }
-
+        
         public async Task<bool> UpdatePartial(Rol rol)
         {
             var existingRol = await _context.Roles.FindAsync(rol.Id);
-            if (existingRol == null) return false;
+            if (existingRol == null)
+                return false;
             _context.Roles.Update(existingRol);
             await _context.SaveChangesAsync();
             return true;

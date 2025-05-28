@@ -10,9 +10,8 @@ namespace Entity.Model
     public class Neighborhood : GenericModel
     {
         public int CityId { get; set; }
-            
         public City City { get; set; }
         public User User { get; set; }
-        public String CodePostal { get; set; }
+        public string CodePostal { get; set; }
     }
 }

@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Entity.Dtos.Base;
+using System.ComponentModel.Design;
 
 namespace Entity.Dtos.RolDTO
 {
     /// <summary>
     /// DTO para mostrar información básica de un rol (operación GET ALL,CREATE,UPDATE(PATCH-PUT))
     /// </summary>
-    public class RolDto : BaseDto
+    public class RolDto : UpdateDtoBase
     {
-        public  string Name { get; set; }
-        public  string Description { get; set; }
+        public bool Active { get; set; }
     }
 }

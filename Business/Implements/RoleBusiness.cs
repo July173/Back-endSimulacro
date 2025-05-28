@@ -13,6 +13,7 @@ using ValidationException = Utilities.Exceptions.ValidationException;
 using Data.Implements.RolUserData;
 using Entity.Dtos.RolUserDTO;
 using Utilities.Interfaces;
+using Entity.Dtos.Base;
 
 
 namespace Business.Implements
@@ -55,7 +56,7 @@ namespace Business.Implements
         ///<summary>
         /// Desactiva un rol en la base de datos
         /// </summary>
-        public async Task<bool> DeleteLogicRolAsync(DeleteLogiRolDto dto)
+        public async Task<bool> DeleteLogicRolAsync(GenericDto dto)
         {
             if (dto == null || dto.Id <= 0)
                 throw new ValidationException("Id", "El ID del rol es inválido");
@@ -63,7 +64,7 @@ namespace Business.Implements
             var exists = await _rolData.GetByIdAsync(dto.Id)
                 ?? throw new EntityNotFoundException("rol", dto.Id);
 
-            return await _rolData.ActiveAsync(dto.Id, dto.Status);
+            return await _rolData.ActiveAsync(dto.Id, dto.Active);
         }
 
     }

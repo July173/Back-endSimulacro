@@ -26,6 +26,21 @@ namespace Entity.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Rol> Roles { get; set; }
         public DbSet<RolUser> RolUsers { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Form> Forms { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<FormModule> FormModules { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<RolFormPermission> RolFormPermissions { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Neighborhood> Neighborhoods { get; set; }
+        public DbSet<Provider> Providers { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,20 +57,99 @@ namespace Entity.Context
                 .HasOne(ru => ru.Rol)
                 .WithMany(r => r.RolUsers)
                 .HasForeignKey(ru => ru.RolId);
-                
+
+            // Relación uno-a-muchos: Country-Department
+            modelBuilder.Entity<Department>()
+                .HasOne(d => d.Country)
+                .WithMany(c => c.Departments)
+                .HasForeignKey(d => d.CountryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: Department-City
+            modelBuilder.Entity<City>()
+                .HasOne(c => c.Department)
+                .WithMany(d => d.Cities)
+                .HasForeignKey(c => c.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: City-Neighborhood
+            modelBuilder.Entity<Neighborhood>()
+                .HasOne(n => n.City)
+                .WithMany(c => c.Neighborhoods)
+                .HasForeignKey(n => n.CityId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            
+            // Relación uno-a-uno: User-Person
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Person)
+                .WithOne(p => p.User)
+                .HasForeignKey<User>(u => u.PersonId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-uno: User-Employee
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Employee)
+                .WithOne(e => e.User)
+                .HasForeignKey<Employee>(e => e.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-uno: User-Provider
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Provider)
+                .WithOne(p => p.User)
+                .HasForeignKey<Provider>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: User-Neighborhood
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Neighborhood)
+                .WithMany()
+                .HasForeignKey(u => u.NeighborhoodId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: Form-FormModule
+            modelBuilder.Entity<FormModule>()
+                .HasOne(fm => fm.Form)
+                .WithMany(f => f.FormModule)
+                .HasForeignKey(fm => fm.FormId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: Module-FormModule
+            modelBuilder.Entity<FormModule>()
+                .HasOne(fm => fm.Module)
+                .WithMany(m => m.FormModule)
+                .HasForeignKey(fm => fm.ModuleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: Permission-RolFormPermission
+            modelBuilder.Entity<RolFormPermission>()
+                .HasOne(rfp => rfp.Permission)
+                .WithMany()
+                .HasForeignKey(rfp => rfp.PermissionId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: Rol-RolFormPermission
+            modelBuilder.Entity<RolFormPermission>()
+                .HasOne(rfp => rfp.Rol)
+                .WithMany()
+                .HasForeignKey(rfp => rfp.RolId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Relación uno-a-muchos: Form-RolFormPermission
+            modelBuilder.Entity<RolFormPermission>()
+                .HasOne(rfp => rfp.Form)
+                .WithMany()
+                .HasForeignKey(rfp => rfp.FormId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
             // Configuración para todas las entidades que heredan de BaseEntity
             foreach (var entityType in modelBuilder.Model.GetEntityTypes()
                 .Where(t => t.ClrType.IsSubclassOf(typeof(BaseModel))))
             {
-                // Configurar CreatedAt para que no sea nullable
-                modelBuilder.Entity(entityType.ClrType)
-                    .Property("CreatedAt")
-                    .IsRequired();
-                    
-                // Configurar UpdatedAt y DeleteAt como nullable
-                modelBuilder.Entity(entityType.ClrType)
-                    .Property("UpdatedAt")
-                    .IsRequired(false);
+              
                     
                 modelBuilder.Entity(entityType.ClrType)
                     .Property("DeleteAt")
@@ -63,8 +157,22 @@ namespace Entity.Context
                     
                 // Configurar Status con un valor predeterminado de true
                 modelBuilder.Entity(entityType.ClrType)
-                    .Property("Status")
+                    .Property("Active")
                     .HasDefaultValue(true);
+            }
+
+            // Configuración para entidades que heredan de GenericModel
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes()
+                .Where(t => t.ClrType != null && t.ClrType.IsSubclassOf(typeof(GenericModel))))
+            {
+                modelBuilder.Entity(entityType.ClrType)
+                    .Property("Name")
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                modelBuilder.Entity(entityType.ClrType)
+                    .Property("Description")
+                    .HasMaxLength(500);
             }
         }
 
@@ -227,28 +335,27 @@ namespace Entity.Context
             ChangeTracker.DetectChanges();
             
             var entries = ChangeTracker.Entries()
-                .Where(e => e.Entity is BaseModel);
+                .Where(e => e.Entity is GenericModel);
 
             var currentDateTime = DateTime.UtcNow;
 
             foreach (var entry in entries)
             {
-                if (entry.Entity is BaseModel entity)
+                if (entry.Entity is GenericModel entity)
                 {
                     switch (entry.State)
                     {
                         case EntityState.Added:
-                            entity.CreatedAt = currentDateTime;
-                            entity.Status = true;
+                            entity.Active = true;
                             break;
-                        case EntityState.Modified:
-                            entity.UpdatedAt = currentDateTime;
-                            break;
+                        //case EntityState.Modified:
+                        //    entity.UpdatedAt = currentDateTime;
+                        //    break;
                         case EntityState.Deleted:
                             // Convertimos el borrado en un borrado lógico
                             entry.State = EntityState.Modified;
                             entity.DeleteAt = currentDateTime;
-                            entity.Status = false;
+                            entity.Active = false;
                             break;
                     }
                 }

@@ -6,6 +6,7 @@ using Business.Interfaces;
 using Business.Services;
 using Data.Implements.RolUserData;
 using Data.Interfaces;
+using Entity.Dtos.Base;
 using Entity.Dtos.RolUserDTO;
 using Entity.Dtos.UserDTO;
 using Entity.Model;
@@ -59,7 +60,7 @@ namespace Business.Implements
         public async Task<User> LoginAsync(string email, string password)
         {
             var user = await GetByEmailAsync(email);
-            if (user == null || !user.Status)
+            if (user == null || !user.Active)
                 return null;
 
             string hashedPassword = HashPassword(password);
@@ -100,8 +101,7 @@ namespace Business.Implements
         {
             var user = _mapper.Map<User>(dto);
             user.Password = HashPassword(user.Password);
-            user.Status = true;
-            user.CreatedAt = DateTime.Now;
+            user.Active = true;
 
             var createdUser = await _userData.CreateAsync(user);
             return _mapper.Map<UserDto>(createdUser);
@@ -114,7 +114,7 @@ namespace Business.Implements
         /// <param name="dto">Objeto UpdateUserDto con los datos a modificar.</param>
         /// <returns> True si la actualización fue exitosa; de lo contrario, false.</returns>
         /// <exception cref="ArgumentException"> Se lanza si el ID del usuario es inválido.</exception>
-        public async Task<bool> UpdateParcialUserAsync(UpdateUserDto dto)
+        public async Task<bool> UpdateParcialUserAsync(UserUpdateDto dto)
         {
             if (dto.Id <= 0)
                 throw new ArgumentException("ID inválido.");
@@ -132,7 +132,7 @@ namespace Business.Implements
         /// <returns>True si se actualizó el estado correctamente; de lo contrario, false.</returns>
         /// <exception cref="ValidationException">Si el ID es inválido.</exception>
         /// <exception cref="EntityNotFoundException">Si el usuario no existe.</exception>
-        public async Task<bool> SetUserActiveAsync(DeleteLogicalUserDto dto)
+        public async Task<bool> SetUserActiveAsync(GenericDto dto)
         {
             if (dto == null || dto.Id <= 0)
                 throw new ValidationException("Id", "El ID del usuario es inválido");
@@ -140,7 +140,7 @@ namespace Business.Implements
             var exists = await _userData.GetByIdAsync(dto.Id)
                 ?? throw new EntityNotFoundException("user", dto.Id);
 
-            return await _userData.Active(dto.Id, dto.Status);
+            return await _userData.Active(dto.Id, dto.Active);
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace Business.Implements
             var usuario = await _userData.GetByEmailAsync(email);
 
             // Verificamos que el usuario exista y esté activo
-            if (usuario == null || !usuario.Status)
+            if (usuario == null || !usuario.Active)
                 throw new EntityNotFoundException("Usuario", email);
 
             // Generamos un token JWT con expiración de 15 minutos para el restablecimiento de contraseña

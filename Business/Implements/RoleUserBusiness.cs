@@ -52,7 +52,7 @@ namespace Business.Implements
         /// Se lanza cuando el ID del rol de usuario es inválido o cuando no se proporciona
         /// ningún campo para actualizar.
         /// </exception>
-        public async Task<bool> UpdateParcialRoleUserAsync(UpdateRolUserDto dto)
+        public async Task<bool> UpdateParcialRoleUserAsync(RolUserDto dto)
         {
             if (dto.Id <= 0)
                 throw new ArgumentException("ID inválido.");

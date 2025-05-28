@@ -20,6 +20,8 @@ using FluentValidation.AspNetCore;
 using Business.Services;
 using Data.Implements.BaseDate;
 using Data.Implements.BaseData;
+using Data.Implements.Security;
+using Data.Implements.Others;
 
 
 
@@ -76,6 +78,37 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 // Register RoleUser-specific services
 builder.Services.AddScoped<IRolUserData, RolUserData>();
 builder.Services.AddScoped<IRoleUserBusiness, RoleUserBusiness>();
+
+builder.Services.AddScoped<IPersonData, PersonData>();
+
+builder.Services.AddScoped<IFormData, FormData>();
+
+builder.Services.AddScoped<IModuleData, ModuleData>();
+
+builder.Services.AddScoped<IFormModuleData, FormModuleData>();
+
+builder.Services.AddScoped<IPermissionData, PermissionData>();
+
+builder.Services.AddScoped<IRolFormPermissionData, RolFormPermissionData>();
+
+
+builder.Services.AddScoped<IProviderData, ProviderData>();
+
+builder.Services.AddScoped<ICityData, CityData>();
+
+builder.Services.AddScoped<ICountryData, CountryData>();
+
+builder.Services.AddScoped<IDepartmentData, DepartmentData>();
+
+builder.Services.AddScoped<INeighborhoodData, NeighborhoodData>();
+
+builder.Services.AddScoped<IClientData, ClientData>();
+
+builder.Services.AddScoped<IEmployeeData, EmployeeData>();
+
+
+
+
 
 // Register utility helpers
 builder.Services.AddScoped<IGenericIHelpers, GenericHelpers>();
