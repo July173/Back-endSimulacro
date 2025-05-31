@@ -8,12 +8,7 @@ namespace Web.Controllers.Interface
 {
     public interface IPersonController : IGenericController<PersonDto, Person>
     {
-        Task<IActionResult> UpdatePartial(UpdateRolDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int personId, PersonUpdateDto dto);
+        Task<IActionResult> DeleteLogic( int id);
     }
 }
-
-
-
-
-

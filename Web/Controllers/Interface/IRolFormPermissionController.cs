@@ -9,6 +9,6 @@ namespace Web.Controllers.Interface
 {
     public interface IRolFormPermissionController : IGenericController<RolFormPermissionDto, RolFormPermission>
     {
-        Task<IActionResult> UpdatePartial(RolFormPermissionDto dto);
+        Task<IActionResult> UpdatePartial(int id, int rolFormPermission, RolFormPermissionDto dto);
     }
 }

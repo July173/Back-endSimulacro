@@ -8,8 +8,8 @@ namespace Web.Controllers.Interface
 {
     public interface IClientController : IGenericController<ClientDto, Client>
     {
-        Task<IActionResult> UpdatePartial(ClientUpdateDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int clientId, ClientUpdateDto dto);
+        Task<IActionResult> DeleteLogic(int id);
     }
 }
 

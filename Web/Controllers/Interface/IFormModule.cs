@@ -8,6 +8,6 @@ namespace Web.Controllers.Interface
 {
     public interface IFormModuleController : IGenericController<FormModuleDto, FormModule>
     {
-        Task<IActionResult> UpdatePartial(FormModuleDto dto);
+        Task<IActionResult> UpdatePartial(int id, int formModule, FormModuleDto dto);
     }
 }

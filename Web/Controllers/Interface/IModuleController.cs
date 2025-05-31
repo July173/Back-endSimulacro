@@ -10,8 +10,8 @@ namespace Web.Controllers.Interface
 {
     public interface IModuleController : IGenericController<ModuleDto, Module>
     {
-        Task<IActionResult> UpdatePartial(ModuleUpdateDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int moduleId, ModuleUpdateDto dto);
+        Task<IActionResult> DeleteLogic(int id );
     }
 }
 

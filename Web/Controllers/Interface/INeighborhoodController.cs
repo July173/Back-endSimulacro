@@ -9,8 +9,8 @@ namespace Web.Controllers.Interface
 {
     public interface INeighborhoodController : IGenericController<NeighborhoodDto, Neighborhood>
     {
-        Task<IActionResult> UpdatePartial(NeighborhoodUpdateDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int neighborhoodId, NeighborhoodUpdateDto dto);
+        Task<IActionResult> DeleteLogic(int id);
     }
 }
 

@@ -9,7 +9,7 @@ namespace Web.Controllers.Interface
     {
         Task<IActionResult> GetUserByEmail(string email);
         Task<IActionResult> UpdatePartialUser(UserUpdateDto dto);
-        Task<IActionResult> SetUserActive( GenericDto dto);
-       
+        Task<IActionResult> SetUserActive(int id, GenericDto dto);
+
     }
 }

@@ -9,8 +9,8 @@ namespace Web.Controllers.Interface
 {
     public interface IFormController : IGenericController<FormDto, Form>
     {
-        Task<IActionResult> UpdatePartial(FormUpdateDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int formId, FormUpdateDto dto);
+        Task<IActionResult> DeleteLogic(int id);
     }
 }
 

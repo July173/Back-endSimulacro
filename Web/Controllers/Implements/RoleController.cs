@@ -3,6 +3,7 @@ using Entity.Dtos.RolDTO;
 using Entity.Model;
 using Web.Controllers.Interface;
 using Business.Interfaces;
+using Entity.Model.Base;
 using Entity.Dtos.Base;
 
 namespace Web.Controllers.Implements
@@ -24,7 +25,7 @@ namespace Web.Controllers.Implements
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UpdatePartialRole( UpdateRolDto dto)
+        public async Task<IActionResult> UpdatePartialRole(int id, int roleId, [FromBody] UpdateRolDto dto)
         {
             try
             {

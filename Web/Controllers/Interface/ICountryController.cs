@@ -8,8 +8,8 @@ namespace Web.Controllers.Interface
 {
     public interface ICountryController : IGenericController<CountryDto, Country>
     {
-        Task<IActionResult> UpdatePartial(CountryUpdateDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int countryId, CountryUpdateDto dto);
+        Task<IActionResult> DeleteLogic(int id );
     }
 }
 

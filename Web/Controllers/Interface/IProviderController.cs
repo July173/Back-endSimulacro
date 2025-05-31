@@ -8,7 +8,7 @@ namespace Web.Controllers.Interface
 {
     public interface IProviderController : IGenericController<ProviderDto, Provider>
     {
-        Task<IActionResult> UpdatePartial( ProvideUpdateDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int providerId, ProvideUpdateDto dto);
+        Task<IActionResult> DeleteLogic(int id);
     }
 }

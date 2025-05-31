@@ -10,8 +10,8 @@ namespace Web.Controllers.Interface
 {
     public interface IPermissionController : IGenericController<PermissionDto, Permission>
     {
-        Task<IActionResult> UpdatePartial(PermissionUpdateDto dto);
-        Task<IActionResult> DeleteLogic(GenericDto dto);
+        Task<IActionResult> UpdatePartial(int id, int permissionId, PermissionUpdateDto dto);
+        Task<IActionResult> DeleteLogic(int id );
     }
 }
 

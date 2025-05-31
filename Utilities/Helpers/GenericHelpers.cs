@@ -16,7 +16,6 @@ namespace Utilities.Helpers
         private readonly IRoleHelper _roleHelper;
         private readonly IUserHelper _userHelper;
         private readonly IValidationHelper _validationHelper;
-        private readonly IChangeLogHelper _changeLogHelper;
         private readonly ICityHelper _cityHelper;
         private readonly IClientHelper _clientHelper;
         private readonly ICountryHelper _countryHelper;
@@ -36,7 +35,6 @@ namespace Utilities.Helpers
             IRoleHelper roleHelper,
             IUserHelper userHelper,
             IValidationHelper validationHelper,
-            IChangeLogHelper changeLogHelper,
             ICityHelper cityHelper,
             IClientHelper clientHelper,
             ICountryHelper countryHelper,
@@ -55,7 +53,6 @@ namespace Utilities.Helpers
             _roleHelper = roleHelper;
             _userHelper = userHelper;
             _validationHelper = validationHelper;
-            _changeLogHelper = changeLogHelper;
             _cityHelper = cityHelper;
             _clientHelper = clientHelper;
             _countryHelper = countryHelper;

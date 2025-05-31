@@ -169,16 +169,7 @@ builder.Services.AddAuthentication(options =>
 
 var origenesPermitidos = builder.Configuration.GetValue<string>("origenesPermitidos")!.Split(";");
 {
-    builder.Services.AddCors(options =>
-    {
-        options.AddDefaultPolicy(optionsCORS =>
-        {
-            optionsCORS.WithOrigins(origenesPermitidos).AllowAnyMethod().AllowAnyHeader();
-        });
-    });
-
-    // Register AutoMapper
-    builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+  
 
     var app = builder.Build();
 
@@ -191,23 +182,10 @@ var origenesPermitidos = builder.Configuration.GetValue<string>("origenesPermiti
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Sistema de Gestión v1");
             c.RoutePrefix = string.Empty; // Para servir Swagger UI en la raíz
         });
+        
     }
 
-    // Use custom exception handling middleware
-    app.UseExceptionHandler(appError =>
-    {
-        appError.Run(async context =>
-        {
-            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-            context.Response.ContentType = "application/json";
-
-            await context.Response.WriteAsync(new
-            {
-                StatusCode = context.Response.StatusCode,
-                Message = "Error interno del servidor."
-            }.ToString());
-        });
-    });
+  
 
     // Enable CORS
     app.UseCors();
