@@ -29,15 +29,17 @@ namespace Business.Implements
         private readonly IEmailService _emailService;
         private readonly IJwtGenerator _jwtGenerator;
         private readonly AppSettings _appSettings;
+        private readonly AuditBusiness _auditBusiness;
 
-        public UserBusiness(IUserData userData, IMapper mapper, ILogger<UserBusiness> logger, IGenericIHelpers helpers, IEmailService emailService, IJwtGenerator jwtGenerator,
-            IOptions<AppSettings> appSettings)
-            : base(userData, mapper, logger, helpers)
+        public UserBusiness(IUserData userData, IMapper mapper, ILogger<UserBusiness> logger, IGenericIHelpers helpers, IEmailService emailService, IJwtGenerator jwtGenerator, AuditBusiness auditBusiness,
+           IOptions<AppSettings> appSettings)
+           : base(userData, mapper, logger, helpers)
         {
             _userData = userData;
             _emailService = emailService;
             _jwtGenerator = jwtGenerator;
             _appSettings = appSettings.Value;
+            _auditBusiness = auditBusiness;
         }
 
         ///<summary>
@@ -104,6 +106,7 @@ namespace Business.Implements
             user.Active = true;
 
             var createdUser = await _userData.CreateAsync(user);
+            await _auditBusiness.RegistrarCambioAsync( "Crear Usuario", $"Usuario creado: {u.Nombre}");
             return _mapper.Map<UserDto>(createdUser);
 
         }

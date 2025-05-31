@@ -24,8 +24,6 @@ using Data.Implements.Security;
 using Data.Implements.Others;
 using Utilities.Interfaces.Security;
 using Utilities.Helpers.Security;
-using Utilities.Interfaces.OthersDates;
-using Utilities.Helpers.OthersDates;
 using Business.Implements.Security;
 using Business.Implements.OthersDates;
 
@@ -35,6 +33,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add controllers
 builder.Services.AddControllers();
+builder.Services.AddApplicationServices(builder.Configuration); // 
+
 
 builder.Services.AddValidatorsFromAssemblyContaining(typeof(Program));
 builder.Services.AddSingleton<IValidatorFactory>(sp =>
@@ -46,6 +46,11 @@ builder.Services.AddSwaggerDocumentation();
 // Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDbContext<AuditDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("AuditConnection")));
+
+builder.Services.AddScoped<IDbContextFactory, DbContextFactory>();
 
 // Configure email service
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
@@ -123,6 +128,7 @@ builder.Services.AddScoped<IEmployeeData, EmployeeData>();
 builder.Services.AddScoped<IEmployeeBusiness, EmployeeBusiness>();
 
 
+builder.Services.AddScoped<AuditBusiness>();
 
 
 
@@ -133,17 +139,7 @@ builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 builder.Services.AddScoped<IAuthHeaderHelper, AuthHeaderHelper>();
 builder.Services.AddScoped<IRoleHelper, RoleHelper>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
-builder.Services.AddScoped<IPersonHelper, PersonHelper>();
-builder.Services.AddScoped<IFormHelper, FormHelper>();
-builder.Services.AddScoped<IModuleHelper, ModuleHelper>();
-builder.Services.AddScoped<IPermissionHelper, PermissionHelper>();
-builder.Services.AddScoped<ICountryHelper, CountryHelper>();
-builder.Services.AddScoped<IDepartmentHelper, DepartmentHelper>();
-builder.Services.AddScoped<ICityHelper, CityHelper>();
-builder.Services.AddScoped<INeighborhoodHelper, NeighborhoodHelper>();
-builder.Services.AddScoped<IProviderHelper, ProviderHelper>();
-builder.Services.AddScoped<IClientHelper, ClientHelper>();
-builder.Services.AddScoped<IEmployeeHelper, EmployeeHelper>();
+
 
 
 builder.Services.AddScoped<IValidationHelper, ValidationHelper>();
@@ -204,6 +200,8 @@ var origenesPermitidos = builder.Configuration.GetValue<string>("origenesPermiti
         try
         {
             var dbContext = services.GetRequiredService<ApplicationDbContext>();
+            
+
             var logger = services.GetRequiredService<ILogger<Program>>();
 
             // Aplicar migraciones (esto crea la BD si no existe y aplica todas las migraciones)
